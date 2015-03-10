@@ -6,7 +6,7 @@ YouCompleteMe in Vim.
 # Usage
 
   0) Modify contents of this file and LICENSE 
-  1) Add source files and edit CMakeLists.txt as necessary
+  1) Add source files in src/ and edit CMakeLists.txt as necessary
   2) Use
 
     $ mkdir build
