@@ -7,7 +7,7 @@ SET (CMAKE_CXX_COMPILER             "/usr/bin/clang++-3.5")
 
 project (${PROJECT_NAME})
 
-add_executable (${PROJECT_NAME} main.cc)
+add_executable (${PROJECT_NAME} src/main.cc)
 
 ## Support for Clang's CompilationDatabase system
 set (CMAKE_EXPORT_COMPILE_COMMANDS 1)
@@ -19,7 +19,7 @@ set (CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 ## Compile and create a library.  STATIC is default unless BUILD_SHARED_LIBS
 ## is on.
-#add_library (LibraryName sources.cc)
+#add_library (LibraryName src/sources.cc)
 
 #if (USE_MY_LIBRARY)
 
