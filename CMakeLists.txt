@@ -2,8 +2,16 @@ cmake_minimum_required (VERSION 2.6)
 
 set (PROJECT_NAME MyProject)
 
+# Prefer using G++ for debug mode because the GLIBCXX_DEBUG flag for pretty
+# printing collections in GDB doesn't seem to work with clang.
 SET (CMAKE_C_COMPILER             "/usr/bin/clang-3.5")
-SET (CMAKE_CXX_COMPILER             "/usr/bin/clang++-3.5")
+if (CMAKE_BUILD_TYPE MATCHES DEBUG)
+  set (CMAKE_CXX_COMPILER "g++")
+elseif (CMAKE_BUILD_TYPE MATCHES RELWITHDEBINFO)
+  set (CMAKE_CXX_COMPILER "g++")
+else (CMAKE_BUILD_TYPE MATCHES DEBUG)
+  SET (CMAKE_CXX_COMPILER             "/usr/bin/clang++-3.5")
+endif (CMAKE_BUILD_TYPE MATCHES DEBUG)
 
 project (${PROJECT_NAME})
 
@@ -43,7 +51,7 @@ SET (CMAKE_C_FLAGS_RELEASE        "${CMAKE_CFLAGS} -O3 -DNDEBUG")
 SET (CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_CFLAGS} -O2 -g")
 
 SET (CMAKE_CXX_FLAGS                "-Wall -std=c++11 -Wextra -Werror")
-SET (CMAKE_CXX_FLAGS_DEBUG          "${CMAKE_CXXFLAGS} -g")
+SET (CMAKE_CXX_FLAGS_DEBUG          "${CMAKE_CXXFLAGS} -g -D_GLIBCXX_DEBUG")
 SET (CMAKE_CXX_FLAGS_MINSIZEREL     "${CMAKE_CXXFLAGS} -Os -DNDEBUG")
 SET (CMAKE_CXX_FLAGS_RELEASE        "${CMAKE_CXXFLAGS} -O3 -DNDEBUG")
-SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXXFLAGS} -O2 -g")
+SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXXFLAGS} -O2 -g -D_GLIBCXX_DEBUG")
