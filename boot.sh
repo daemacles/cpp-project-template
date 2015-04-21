@@ -13,7 +13,7 @@ done
 
 rm -rf .git
 git init .
-git add CMakeLists.txt main.cc .gitignore .ycm_extra_conf.py LICENSE \
+git add CMakeLists.txt src/main.cc .gitignore .ycm_extra_conf.py LICENSE \
         README.md
 git commit -m "Initial commit."
 

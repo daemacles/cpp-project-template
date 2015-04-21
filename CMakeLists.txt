@@ -5,13 +5,14 @@ set (PROJECT_NAME MyProject)
 # Prefer using G++ for debug mode because the GLIBCXX_DEBUG flag for pretty
 # printing collections in GDB doesn't seem to work with clang.
 SET (CMAKE_C_COMPILER             "/usr/bin/clang-3.5")
-if (CMAKE_BUILD_TYPE MATCHES DEBUG)
+string(TOUPPER ${CMAKE_BUILD_TYPE} DEBUG_MODE)
+if (DEBUG_MODE STREQUAL DEBUG)
   set (CMAKE_CXX_COMPILER "g++")
-elseif (CMAKE_BUILD_TYPE MATCHES RELWITHDEBINFO)
+elseif (DEBUG_MODE STREQUAL RELWITHDEBINFO)
   set (CMAKE_CXX_COMPILER "g++")
-else (CMAKE_BUILD_TYPE MATCHES DEBUG)
+else (DEBUG_MODE STREQUAL DEBUG)
   SET (CMAKE_CXX_COMPILER             "/usr/bin/clang++-3.5")
-endif (CMAKE_BUILD_TYPE MATCHES DEBUG)
+endif (DEBUG_MODE STREQUAL DEBUG)
 
 project (${PROJECT_NAME})
 
