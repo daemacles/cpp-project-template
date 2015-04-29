@@ -2,6 +2,13 @@ cmake_minimum_required (VERSION 2.6)
 set (PROJECT_NAME MyProject)
 project (${PROJECT_NAME})
 
+add_executable (${PROJECT_NAME} src/main.cc) # link libraries located below
+
+find_package (Eigen3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR})
+find_package (OpenCV REQUIRED)
+find_package (cpp-matplotlib REQUIRED)
+
 ## Set optional features.  This will show up as a preprocessor variable
 option (USE_GLIBCXX_DEBUG 
   "Use the _GLIBCXX_DEBUG macro for nicer debugging and error checking of the c++ standard library.  Warning, it breaks ABI compatibility so don't pass container instantiations between translation units that don't have the same debug mode."
@@ -30,9 +37,8 @@ set (CMAKE_EXPORT_COMPILE_COMMANDS 1)
   #set (EXTRA_LIBS ${EXTRA_LIBS} LibraryName)
 #endif (USE_MY_LIBRARY)
 
-#set (LIBS LibraryName...)
+set (LIBS ${cpp-matplotlib_LIBS} ${OpenCV_LIBS})
 
-add_executable (${PROJECT_NAME} src/main.cc)
 target_link_libraries (${PROJECT_NAME} ${EXTRA_LIBS} ${LIBS})
 
 # Compile flags
