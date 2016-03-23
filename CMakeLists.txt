@@ -1,4 +1,8 @@
 cmake_minimum_required (VERSION 2.6)
+
+SET (CMAKE_C_COMPILER             "clang")
+SET (CMAKE_CXX_COMPILER             "clang++")
+
 set (PROJECT_NAME MyProject)
 project (${PROJECT_NAME})
 
@@ -9,9 +13,6 @@ option (USE_GLIBCXX_DEBUG
 ## USE_MY_LIBRARY in source.
 #option (USE_MY_LIBRARY
 #        "Use the provided library" ON)
-
-SET (CMAKE_C_COMPILER             "/usr/bin/clang-3.5")
-SET (CMAKE_CXX_COMPILER             "/usr/bin/clang++-3.5")
 
 ## Support for Clang's CompilationDatabase system
 set (CMAKE_EXPORT_COMPILE_COMMANDS 1)
@@ -42,7 +43,7 @@ SET (CMAKE_C_FLAGS_MINSIZEREL     "${CMAKE_CFLAGS} -Os -DNDEBUG")
 SET (CMAKE_C_FLAGS_RELEASE        "${CMAKE_CFLAGS} -O3 -DNDEBUG")
 SET (CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_CFLAGS} -O2 -g")
 
-SET (CMAKE_CXX_FLAGS                "-Wall -std=c++11 -Wextra -Werror")
+SET (CMAKE_CXX_FLAGS                "-Wall -std=c++14 -Wextra -Werror")
 SET (CMAKE_CXX_FLAGS_DEBUG          "${CMAKE_CXXFLAGS} -g")
 SET (CMAKE_CXX_FLAGS_MINSIZEREL     "${CMAKE_CXXFLAGS} -Os -DNDEBUG")
 SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXXFLAGS} -O2 -g")
