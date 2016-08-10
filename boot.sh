@@ -14,7 +14,7 @@ done
 rm -rf .git
 git init .
 git add CMakeLists.txt src/main.cc .gitignore .ycm_extra_conf.py LICENSE \
-        README.md
+        README.md include compile_cycle.sh
 git commit -m "Initial commit."
 
 mkdir -p build
@@ -23,6 +23,8 @@ cmake -DCMAKE_BUILD_TYPE=Debug ..
 make
 cd ..
 rm boot.sh
+
+ctags-exuberant --recurse=yes
 
 echo
 echo "Initial git commit has occured and project has been built in the build/"
