@@ -13,14 +13,14 @@ done
 
 rm -rf .git
 git init .
-git add CMakeLists.txt src/main.cc .gitignore .ycm_extra_conf.py LICENSE \
-        README.md include compile_cycle.sh
+git add CMakeLists.txt src .gitignore .ycm_extra_conf.py LICENSE \
+        README.md include compile_cycle.sh third_party
 git commit -m "Initial commit."
 
 mkdir -p build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Debug ..
-make
+make -j5
 cd ..
 rm boot.sh
 
