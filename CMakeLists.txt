@@ -17,6 +17,11 @@ option (USE_GLIBCXX_DEBUG
 ## Support for Clang's CompilationDatabase system
 set (CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
+add_subdirectory( third_party/spdlog )
+add_subdirectory( third_party/fmt )
+add_subdirectory( third_party/pystring )
+add_subdirectory( third_party/backward-cpp )
+
 ## Compile and create a library.  STATIC is default unless BUILD_SHARED_LIBS
 ## is on.
 #add_library (LibraryName src/sources.cc)
@@ -31,10 +36,24 @@ set (CMAKE_EXPORT_COMPILE_COMMANDS 1)
   #set (EXTRA_LIBS ${EXTRA_LIBS} LibraryName)
 #endif (USE_MY_LIBRARY)
 
-#set (LIBS LibraryName...)
+include_directories( include )
 
-add_executable (${PROJECT_NAME} src/main.cc)
-target_link_libraries (${PROJECT_NAME} ${EXTRA_LIBS} ${LIBS})
+set (LIBS 
+  backward-cpp
+  fmt
+  pthread
+  pystring
+  spdlog
+  )
+
+add_executable (${PROJECT_NAME} 
+  src/logging.cc
+  src/main.cc
+  src/stacktrace.cc
+  )
+target_link_libraries (${PROJECT_NAME} 
+  ${EXTRA_LIBS} 
+  ${LIBS})
 
 # Compile flags
 SET (CMAKE_C_FLAGS                "-Wall -std=c11 -Wextra -Werror")
