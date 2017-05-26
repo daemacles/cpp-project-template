@@ -1,8 +1,5 @@
 cmake_minimum_required (VERSION 2.6)
 
-SET (CMAKE_C_COMPILER             "clang")
-SET (CMAKE_CXX_COMPILER             "clang++")
-
 set (PROJECT_NAME MyProject)
 project (${PROJECT_NAME})
 
