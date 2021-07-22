@@ -20,11 +20,9 @@ git commit -m "Initial commit."
 mkdir -p build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Debug ..
-make -j5
+cmake --build .
 cd ..
 rm boot.sh
-
-ctags-exuberant --recurse=yes
 
 echo
 echo "Initial git commit has occured and project has been built in the build/"
